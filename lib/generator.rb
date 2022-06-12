@@ -32,5 +32,4 @@ class Generator
     end
     keys
   end
-
 end
