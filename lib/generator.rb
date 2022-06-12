@@ -21,10 +21,16 @@ class Generator
     last = date_squared.to_s[-4..-1].to_i
   end
 
-
-
-
-
-
+  def keys
+    split_number = @random.to_s.split("")
+    keys = []
+    index = 0
+    split_number.each do |key|
+      keys << (key + split_number[index + 1]).to_i
+      index += 1
+      break if keys.length == 4
+    end
+    keys
+  end
 
 end
