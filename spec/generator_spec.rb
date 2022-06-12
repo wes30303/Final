@@ -11,10 +11,14 @@ RSpec.describe Generator do
   end
 
   it "has a date" do
-    expect(@generator.date_to_format).to eq(110622)
+    expect(@generator.date_to_format).to be_a Numeric
   end
 
   it "is able to get the square of date" do
-    expect(@generator.date_squared).to eq(12237226884)
+    expect(@generator.date_squared).to be_a Numeric
+  end
+
+  it "can grab the last 4 digets from sqared" do
+    expect(@generator.last_4).to be_a Numeric
   end
 end
