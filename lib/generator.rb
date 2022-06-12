@@ -17,6 +17,10 @@ class Generator
     date_to_format * date_to_format
   end
 
+  def last_4
+    last = date_squared.to_s[-4..-1].to_i
+  end
+
 
 
 
