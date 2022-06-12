@@ -25,4 +25,4 @@ RSpec.describe Generator do
   it "can make keys" do
     expect(@generator.keys.first).to be_a Numeric
   end
-end
+end 
