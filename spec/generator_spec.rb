@@ -21,4 +21,8 @@ RSpec.describe Generator do
   it "can grab the last 4 digets from sqared" do
     expect(@generator.last_4).to be_a Numeric
   end
+
+  it "can make keys" do
+    expect(@generator.keys.first).to be_a Numeric
+  end
 end
