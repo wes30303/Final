@@ -44,7 +44,7 @@ RSpec.describe Generator do
     expect(@generator.reverse_rotate_c).to be_a Hash
     expect(@generator.reverse_rotate_d).to be_a Hash
   end
-
+ 
   it "is able to return a hash" do
     expect(@generator.encrypt).to eq({
       encryption: "keder ohulw",
