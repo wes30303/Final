@@ -7,6 +7,9 @@ class Enigma
     @generator = Generator.new(message, random, date).encrypt
   end
 
+  def decrypt(message, random = random_num, date = date_setup)
+    @generator = Generator.new(message, random, date).decrypt
+  end
 
 
 end
