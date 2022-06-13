@@ -41,5 +41,5 @@ RSpec.describe Generator do
       key: "02715",
       date: "040895"
    })
-  end
+  end 
 end
