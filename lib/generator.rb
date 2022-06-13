@@ -75,3 +75,4 @@ class Generator
     {:encryption => encrypted.join, :key => @random, :date => @date}
   end
 end
+ 
