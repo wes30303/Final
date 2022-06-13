@@ -11,5 +11,8 @@ class Enigma
     @generator = Generator.new(message, random, date).decrypt
   end
 
+  def date_setup
+    @date = (Time.new).strftime("%d%m%y").to_i
+  end
 
 end
