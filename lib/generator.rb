@@ -1,9 +1,11 @@
 require "pry"
 require 'date'
+require './lib/rotate'
 class Generator
-  attr_reader :a_z, :random
+  include Rotate
+  attr_reader :a_z, :random, :date, :message, :reverse_a, :reverse_b, :reverse_c, :reverse_d
 
-  def initialize(message, random = random_num , date = date_to_format)
+  def initialize(message, random = random_num, date = (Time.new).strftime("%d%m%y").to_i)
     @message = message
     @a_z = ("a".."z").to_a << " "
     @random = random
@@ -14,15 +16,9 @@ class Generator
     @random = (0..5).map {rand(0...9)}.join.to_i
   end
 
-  def date_to_format
-      @date = (Time.new).strftime("%d%m%y").to_i
+  def date_squared
+    info = ((@date.to_i) ** 2).to_s[-4..-1].to_i
   end
-
-  def date_squared(date = @date)
-    info = date.to_i * date.to_i
-    last = info.to_s[-4..-1].to_i
-  end
-
 
   def keys
     split_number = @random.to_s.split("")
@@ -43,26 +39,39 @@ class Generator
         shifts << key += date_squared.to_s[index].to_i
         index += 1
       end
+      shifts
   end
 
-  def rotate_a
+  def encrypt
     shifts
-    @A_hash = Hash[@a_z.zip(@a_z.rotate(shifts[0]))]
+    chomped = @message.downcase.chars
+    encrypted = chomped.each_with_index.map do |char, i|
+      if i % 4 == 0
+        char = rotate_a[char]
+      elsif i % 4 == 1
+        char = rotate_b[char]
+      elsif i % 4 == 2
+        char = rotate_c[char]
+      elsif i % 4 == 3
+        char = rotate_d[char]
+      end
+    end
+    {:encryption => encrypted.join, :key => @random, :date => @date}
   end
 
-  def rotate_b
-    shifts
-    @B_hash = Hash[@a_z.zip(@a_z.rotate(shifts[1]))]
+  def decrypt
+    chomped = @message.downcase.chars
+    encrypted = chomped.each_with_index.map do |char, i|
+      if i % 4 == 0
+        char = reverse_rotate_a[char]
+      elsif i % 4 == 1
+        char = reverse_rotate_b[char]
+      elsif i % 4 == 2
+        char = reverse_rotate_c[char]
+      elsif i % 4 == 3
+        char = reverse_rotate_d[char]
+      end
+    end
+    {:encryption => encrypted.join, :key => @random, :date => @date}
   end
-
-  def rotate_c
-    shifts
-    @C_hash = Hash[@a_z.zip(@a_z.rotate(shifts[2]))]
-  end
-
-  def rotate_d
-    shifts
-    @D_hash = Hash[@a_z.zip(@a_z.rotate(shifts[3]))]
-  end
-
 end
