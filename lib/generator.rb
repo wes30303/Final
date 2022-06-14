@@ -5,7 +5,7 @@ class Generator
   include Rotate
   attr_reader :a_z, :random, :date, :message, :reverse_a, :reverse_b, :reverse_c, :reverse_d
 
-  def initialize(message, random = random_num, date = (Time.new).strftime("%d%m%y").to_i)
+  def initialize(message, random = (0..5).map {rand(0...9)}.join.to_i, date = (Time.new).strftime("%d%m%y").to_i)
     @message = message
     @a_z = ("a".."z").to_a << " "
     @random = random
@@ -75,4 +75,3 @@ class Generator
     {:encryption => encrypted.join, :key => @random, :date => @date}
   end
 end
- 
