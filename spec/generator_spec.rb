@@ -3,8 +3,8 @@ require './lib/generator'
 RSpec.describe Generator do
 
   before :each do
-    @generator = Generator.new("hello world", "02715", "040895")
-    @generator2 = Generator.new("keder ohulw", "02715", "040895")
+     @generator = Generator.new("hello world", "02715", "040895")
+     @generator2 = Generator.new("keder ohulw", "02715", "040895")
   end
 
   it "exist" do
