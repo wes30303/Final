@@ -55,9 +55,11 @@ RSpec.describe Generator do
 
   it "is able to return a hash" do
     expect(@generator2.decrypt).to eq({
-      encryption: "hello world",
+      decryption: "hello world",
       key: "02715",
       date: "040895"
    })
   end
+
+  
 end
