@@ -72,6 +72,6 @@ class Generator
         char = reverse_rotate_d[char]
       end
     end
-    {:encryption => encrypted.join, :key => @random, :date => @date}
+    {:decryption => encrypted.join, :key => @random, :date => @date}
   end
 end
